@@ -1,4 +1,3 @@
-import { global } from '@stitches/react';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 
