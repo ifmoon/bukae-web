@@ -1,11 +1,13 @@
+import { global } from '@stitches/react';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 
 import reportWebVitals from './reportWebVitals';
+import App from './router';
 
 ReactDOM.render(
   <StrictMode>
-    <div />
+    <App />
   </StrictMode>,
   document.getElementById('root'),
 );
