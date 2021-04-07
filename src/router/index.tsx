@@ -10,7 +10,7 @@ const App = () => {
       <Switch>
         <DefaultLayout>
           <Route path="/" exact component={Splash} />
-          <Route path="/edit" exact component={Edit} />
+          <Route path="/edit/:phase" exact component={Edit} />
         </DefaultLayout>
       </Switch>
     </BrowserRouter>

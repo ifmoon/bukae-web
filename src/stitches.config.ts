@@ -14,7 +14,12 @@ export const { styled, global } = createCss({
 });
 
 const globalStyles = global({
-  '*': { margin: 0, padding: 0, fontFamily: 'GmarketSansMedium, serif' },
+  '*': {
+    margin: 0,
+    padding: 0,
+    fontFamily: 'GmarketSansMedium, serif',
+    fontSize: 14,
+  },
   'html, body, #root': { height: '100%' },
   '@font-face': {
     fontFamily: 'GmarketSansMedium',
