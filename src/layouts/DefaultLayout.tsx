@@ -13,6 +13,8 @@ const DefaultLayoutWrapper = styled('div', {
 const LayoutInnerWrapper = styled('div', {
   width: '100%',
   height: '100%',
+  paddingTop: 44,
+  backgroundColor: '$neon',
   maxWidth: '425px',
 });
 
