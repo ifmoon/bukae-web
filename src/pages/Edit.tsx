@@ -1,5 +1,7 @@
+import { useCallback, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 
+import Concepts from '../components/Concepts';
 import { styled } from '../stitches.config';
 
 const MainWrapper = styled('div', {
@@ -49,36 +51,40 @@ const DescriptionText = styled('p', {
   margin: '12px 0px',
 });
 
-const ConceptsWrapper = styled('div', {
-  width: '100%',
-  display: 'grid',
-  gridTemplateColumns: 'repeat(4, 1fr)',
-  gap: 12,
-  alignItems: 'center',
-  justifyItems: 'center',
-});
+const getPhaseContents = (
+  phase: string,
+  newCard: Card,
+  setNewCard: (card: Card) => void,
+) => {
+  switch (phase) {
+    case '1':
+      return <Concepts newCard={newCard} setNewCard={setNewCard} />;
+  }
+};
 
-const ConceptItem = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-});
-
-const ConceptButton = styled('button', {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  padding: 16,
-  fontSize: 24,
-  backgroundColor: '#f2f2f2',
-  border: 'solid 2px #bdbdbd',
-  borderRadius: 20,
-  margin: '4px 0px',
-});
+export type Card = Partial<{
+  id: number;
+  concepts: string;
+  name: string;
+  nickname: string;
+  profileImageType: string;
+  profileImageUrl: string;
+  contents: string;
+}>;
 
 const Edit = () => {
   const { phase } = useParams<{ phase: string }>();
   const { goBack } = useHistory();
+  const [newCard, _setNewCard] = useState<Card>({
+    concepts: '',
+  });
+
+  const setNewCard = useCallback(
+    (card: Card) => {
+      _setNewCard(card);
+    },
+    [_setNewCard],
+  );
 
   return (
     <MainWrapper>
@@ -98,12 +104,7 @@ const Edit = () => {
       </EditHeaderWrapper>
       <EditContentsWrapper>
         <DescriptionText>당신의 부캐는 어떤 컨셉인가요?</DescriptionText>
-        <ConceptsWrapper>
-          <ConceptItem>
-            <ConceptButton>👖</ConceptButton>
-            패션
-          </ConceptItem>
-        </ConceptsWrapper>
+        {getPhaseContents(phase, newCard, setNewCard)}
       </EditContentsWrapper>
     </MainWrapper>
   );
