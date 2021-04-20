@@ -2,6 +2,8 @@ import { useCallback, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 
 import Concepts from '../components/Concepts';
+import Decoration from '../components/Decoration';
+import Name from '../components/Name';
 import { styled } from '../stitches.config';
 
 const MainWrapper = styled('div', {
@@ -45,12 +47,6 @@ const EditContentsWrapper = styled('div', {
   padding: 20,
 });
 
-const DescriptionText = styled('p', {
-  color: '#333',
-  fontFamily: 'Noto Sans KR, sans-serif',
-  margin: '12px 0px',
-});
-
 const getPhaseContents = (
   phase: string,
   newCard: Card,
@@ -59,6 +55,10 @@ const getPhaseContents = (
   switch (phase) {
     case '1':
       return <Concepts newCard={newCard} setNewCard={setNewCard} />;
+    case '2':
+      return <Name newCard={newCard} setNewCard={setNewCard} />;
+    case '3':
+      return <Decoration newCard={newCard} setNewCard={setNewCard} />;
   }
 };
 
@@ -77,6 +77,8 @@ const Edit = () => {
   const { goBack } = useHistory();
   const [newCard, _setNewCard] = useState<Card>({
     concepts: '',
+    name: '',
+    nickname: '',
   });
 
   const setNewCard = useCallback(
@@ -103,7 +105,6 @@ const Edit = () => {
         </HeaderButton>
       </EditHeaderWrapper>
       <EditContentsWrapper>
-        <DescriptionText>당신의 부캐는 어떤 컨셉인가요?</DescriptionText>
         {getPhaseContents(phase, newCard, setNewCard)}
       </EditContentsWrapper>
     </MainWrapper>

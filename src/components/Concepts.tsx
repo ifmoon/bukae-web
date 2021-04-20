@@ -14,6 +14,7 @@ const Concepts = ({
 
   return (
     <>
+      <DescriptionText>당신의 부캐는 어떤 컨셉인가요?</DescriptionText>
       <ConceptsWrapper>
         {conceptsData.map(d => (
           <ConceptItem key={d.name}>
@@ -29,7 +30,6 @@ const Concepts = ({
           </ConceptItem>
         ))}
       </ConceptsWrapper>
-
       <NextStepButton
         style={newCard.concepts ? 'neon' : 'gray'}
         onClick={() => {
@@ -43,6 +43,13 @@ const Concepts = ({
     </>
   );
 };
+
+const DescriptionText = styled('p', {
+  color: '#333',
+  fontFamily: 'Noto Sans KR, sans-serif',
+  margin: '12px 0px',
+});
+
 const NextStepButton = styled('button', {
   width: '100%',
   borderRadius: '15px',
